@@ -5,6 +5,7 @@ timeLimit = 30
 timeLeft = timeLimit
 score = 0
 colors = ["grey", "black", "red", "green", "blue", "cyan", "yellow", "pink"]
+color = colors[0]
 
 def gameLoop():
 	if timeLeft == timeLimit:
@@ -21,8 +22,7 @@ def countDown():
 	else:
 		timeLabel.config(text="Time Left: " + str(timeLeft))
 		colorLabel.config(text="Time Up", fg="black")
-		
-		
+
 def click(text):
 	global colorText,timeLeft,textIndex,colorIndex,color,colorLabel,score,scoreLabel
 	if timeLeft>0:
@@ -48,7 +48,7 @@ master.resizable(width=False, height=False)
 master.geometry("455x360")
 master.title("Color Game")
 
-instruction = Label(master, text="Click the Right Color of Text", width=25, fg="black", pady=20)
+instruction = Label(master, text="Click the Correct Color of Text", width=25, fg="black", pady=20)
 instruction.config(font=("times",25))
 
 # Initial a pair of random Color and color text
