@@ -6,6 +6,41 @@ timeLeft = timeLimit
 score = 0
 colors = ["grey", "black", "red", "green", "blue", "cyan", "yellow", "pink"]
 
+def gameLoop():
+	if timeLeft == timeLimit:
+		countDown()
+
+def countDown():
+	global timeLabel,colorLabel, timeLeft
+	
+	if timeLeft>0:
+		timeLabel.config(text="Time Left: " + str(timeLeft))
+		timeLeft-=1
+		timeLabel.after(1000,countDown)
+		scoreLabel.config(text="Score: " + str(score))
+	else:
+		timeLabel.config(text="Time Left: " + str(timeLeft))
+		colorLabel.config(text="Time Up", fg="black")
+		
+		
+def click(text):
+	global colorText,timeLeft,textIndex,colorIndex,color,colorLabel,score,scoreLabel
+	if timeLeft>0:
+		# if correctly answered color, add score
+		if (text.lower() == color):
+			score += 1
+			scoreLabel.config(text="Score: " + str(score))
+		# generate another pair of color and text	
+		colorIndex = random.randint(0,len(colors)-1)
+		color=colors[colorIndex]
+		textIndex = colorIndex
+		while (textIndex == colorIndex):		# avoid same color and text
+			textIndex = random.randint(0,len(colors)-1)
+		# Display colorText
+		colorText=colors[textIndex]
+		colorLabel.config(text=colorText.upper(), fg=color)
+
+
 # Create tk object and game window
 master = Tk()
 master.resizable(width=False, height=False)
@@ -64,36 +99,3 @@ Label(master, text="(c) 2018 Zhaochun Wang (TM)", fg="grey", pady=10).grid(colum
 gameLoop()
 master.mainloop()
 
-def gameLoop():
-	if timeLeft == timeLimit:
-		countDown()
-
-def countDown():
-	global timeLabel,colorLabel, timeLeft
-	
-	if timeLeft>0:
-		timeLabel.config(text="Time Left: " + str(timeLeft))
-		timeLeft-=1
-		timeLabel.after(1000,countDown)
-		scoreLabel.config(text="Score: " + str(score))
-	else:
-		timeLabel.config(text="Time Left: " + str(timeLeft))
-		colorLabel.config(text="Time Up", fg="black")
-		
-		
-def click(text):
-	global colorText,timeLeft,textIndex,colorIndex,color,colorLabel,score,scoreLabel
-	if timeLeft>0:
-		# if correctly answered color, add score
-		if (text.lower() == color):
-			score += 1
-			scoreLabel.config(text="Score: " + str(score))
-		# generate another pair of color and text	
-		colorIndex = random.randint(0,len(colors)-1)
-		color=colors[colorIndex]
-		textIndex = colorIndex
-		while (textIndex == colorIndex):		# avoid same color and text
-			textIndex = random.randint(0,len(colors)-1)
-		# Display colorText
-		colorText=colors[textIndex]
-		colorLabel.config(text=colorText.upper(), fg=color)
