@@ -5,7 +5,8 @@ timeLimit = 30
 timeLeft = timeLimit
 score = 0
 colors = ["grey", "black", "red", "green", "blue", "cyan", "yellow", "pink"]
-color = colors[0]
+color = colors[1]
+gameStatus = 0
 
 def gameLoop():
 	if timeLeft == timeLimit:
