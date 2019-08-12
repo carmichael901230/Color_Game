@@ -15,7 +15,7 @@ Nothing else, but newest version of Python https://www.python.org/
 
 ### Rule is simple
 
- - The game time is 30 seconds, during the game players need to
+ - The game time is 30 seconds. During the game, players need to
 
    - Recognize the color that the words are in (not be fooled by the literal meaning of the words)
 
